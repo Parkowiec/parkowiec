@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <style type="text/css">
+    .container {
+	margin: 375px auto;
+	max-width: 1200px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+  </style>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/plyr@3.7.8/dist/plyr.polyfilled.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+ // Change "{}" to your options:
+// https://github.com/sampotts/plyr/#options
+const player = new Plyr('#audio-player', {
+	controls: [
+		'restart', // Restart playback
+		'rewind', // Rewind by the seek time (default 10 seconds)
+		'play', // Play/pause playback
+		'fast-forward', // Fast forward by the seek time (default 10 seconds)
+		'progress', // The progress bar and scrubber for playback and buffering
+		'current-time', // The current time of playback
+		'duration', // The full duration of the media
+		'volume', // Volume control
+		'settings', // Settings menu
+	],
+	settings: [
+		'speed'
+	],
+	speed: { 
+		selected: 1, 
+		options: [0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4] 
+	},
+	markers: {
+		enabled: true,
+		points: [
+			{ time: 28, label: 'Marker 1' },
+			{ time: 95, label: 'Marker 2' }
+		]
+	}
+});
+
+player.source = {
+  type: 'audio',
+  title: 'Example title',
+  sources: [
+    {
+      src: 'https://raw.githubusercontent.com/Parkowiec/parkowiec/66f7be90eb23e0b954e98d2b9acaf2421db395df/popielica%20gliss%20gliss%20PKP%20256s.mp3',
+      type: 'audio/mp3',
+    }
+  ],
+};
+
+// Expose player so it can be used from the console
+window.player = player;
+</script>
+    
+  </head>
+  <body>
+   <div class="container">
+   	<audio id="audio-player" crossorigin playsinline>
+</div> 
+  </body>
+</html>
